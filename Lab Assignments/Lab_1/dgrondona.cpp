@@ -39,9 +39,10 @@ int main(int argc, char **argv) {
 
         input[j + 1] = key;
 
-        // Output
-        for (int k = 0; k < size; k++) {
+        for (int k = 0; k < i; k++) {
+
             std::cout << input[k] << ";";
+
         }
 
         std::cout << std::endl;
