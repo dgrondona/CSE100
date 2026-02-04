@@ -35,12 +35,14 @@ int main(int argc, char **argv) {
 
         }
 
-        key = input[j + 1];
+        input[j + 1] = key;
 
         // Output
         for (int k = 0; k < size; k++) {
-            std::cout << input[k] << std::endl;
+            std::cout << input[k] << ";";
         }
+
+        std::cout << std::endl;
 
     }
 
