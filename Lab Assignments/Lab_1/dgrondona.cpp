@@ -18,17 +18,19 @@ int main(int argc, char **argv) {
 
     }
 
+    std::cout << std::endl;
+
     // Initialize variables for our sorting function
     int key = 0;
     int j = 0;
 
     // Sort
-    for (int i = 2; i < size; i++) {
+    for (int i = 1; i < size; i++) {
 
         key = input[i];
         j = i - 1;
 
-        while (j > 0 && input[j] > key) {
+        while (j >= 0 && input[j] > key) {
 
             input[j + 1] = input[j];
             j = j - 1;
