@@ -18,8 +18,6 @@ int main(int argc, char **argv) {
 
     }
 
-    std::cout << std::endl;
-
     // Initialize variables for our sorting function
     int key = 0;
     int j = 0;
