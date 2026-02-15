@@ -9,7 +9,6 @@ int* merge(int* left, int* right, int leftHalf, int rightHalf) {
     int a = 0;
     int b = 0;
 
-    // FIX ME: does not work for arrays of different sizes
     for (int i = 0; i < (size); i++) {
 
         // std::cerr << "a: " << a << ",  b: " << b << ",  size: " << size << std::endl;
@@ -49,11 +48,14 @@ int* mergesort(int* input, int size) {
     int leftHalf = size / 2;
     int rightHalf = size - leftHalf;
 
+    // Run sort with the left and right half of the array
     int* left = mergesort(input, leftHalf);
     int* right = mergesort(input + leftHalf, rightHalf);
 
+    // Merge the 2 halves
     result = merge(left, right, leftHalf, rightHalf);
 
+    // Dealocate memory
     delete[] left;
     delete[] right;
 
@@ -79,8 +81,10 @@ int main(int argc, char **argv) {
 
     }
     
+    // Mergesort
     int* result = mergesort(input, size);
 
+    // Print the array
     for (int i = 0; i < size; i++) {
 
         std::cout << result[i] << ";";
