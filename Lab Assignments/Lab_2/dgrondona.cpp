@@ -87,8 +87,6 @@ int main(int argc, char **argv) {
 
     }
 
-    std::cout << std::endl;
-
     // Free allocated memory
     delete[] result;
     delete[] input;
