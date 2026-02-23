@@ -1,16 +1,23 @@
 #include <iostream>
 using namespace std;
 
-int findMaxCrossingSubArray(int* A, int low, int mid, int high) {
+int MIN = -2147483648;
 
-    int maxLeft, maxRight;
+struct SubArray {
+    int low;
+    int high;
+    int sum;
+};
 
-    int leftSum = -999999;
+SubArray findMaxCrossingSubArray(int* A, int low, int mid, int high) {
+
+    int leftSum = MIN;
+    int maxLeft = mid;
     int sum = 0;
 
-    for (int i = mid; i > low; i--) {
+    for (int i = mid; i >= low; i--) {
 
-        sum = sum + A[i];
+        sum += A[i];
 
         if (sum > leftSum) {
 
@@ -21,12 +28,13 @@ int findMaxCrossingSubArray(int* A, int low, int mid, int high) {
 
     }
 
-    int rightSum = -999999;
-    int sum = 0;
+    int rightSum = MIN;
+    int maxRight = mid + 1;
+    sum = 0;
 
-    for (int j = mid + 1; j < high; j++) {
+    for (int j = mid + 1; j <= high; j++) {
 
-        sum = sum + A[j];
+        sum += A[j];
 
         if (sum > rightSum) {
 
@@ -37,35 +45,35 @@ int findMaxCrossingSubArray(int* A, int low, int mid, int high) {
 
     }
 
-    return (maxLeft, maxRight, leftSum + rightSum);
+    return {maxLeft, maxRight, leftSum + rightSum};
 
 }
 
-int findMaxSubArray(int* A, int low, int high) {
+SubArray findMaxSubArray(int* A, int low, int high) {
 
     if (high == low) {
 
-        return (low, high, A[low]);
+        return {low, high, A[low]};
 
     } else {
 
         int mid = ((low + high) / 2);
 
-        int leftHigh, leftLow, leftSum = findMaxSubArray(A, low, mid);
-        int rightLow, rightHigh, rightSum = findMaxSubArray(A, mid + 1, high);
-        int crossLow, crossHigh, crossSum = findMaxCrossingSubArray(A, low, mid, high);
+        SubArray left = findMaxSubArray(A, low, mid);
+        SubArray right = findMaxSubArray(A, mid + 1, high);
+        SubArray cross = findMaxCrossingSubArray(A, low, mid, high);
 
-        if (leftSum >= rightSum && leftSum >= crossSum) {
+        if (left.sum >= right.sum && left.sum >= cross.sum) {
 
-            return (leftLow, leftHigh, leftSum);
+            return left;
 
-        } else if (rightSum >= leftSum && rightSum >= crossSum) {
+        } else if (right.sum >= left.sum && right.sum >= cross.sum) {
 
-            return (rightLow, rightHigh, rightSum);
+            return right;
 
         } else {
 
-            return (crossLow, crossHigh, crossSum);
+            return cross;
 
         }
 
@@ -92,18 +100,11 @@ int main(int argc, char **argv) {
 
     }
     
-    // Mergesort
-    int* result = mergesort(input, size);
+    // Find Maximum Sub-Array
+    SubArray result = findMaxSubArray(input, 0, size - 1);
 
-    // Print the array
-    for (int i = 0; i < size; i++) {
+    std::cout << result.sum << std::endl;
 
-        std::cout << result[i] << ";";
-
-    }
-
-    // Free allocated memory
-    delete[] result;
     delete[] input;
 
 }
