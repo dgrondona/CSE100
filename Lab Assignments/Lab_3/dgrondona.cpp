@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
     // Find Maximum Sub-Array
     SubArray result = findMaxSubArray(input, 0, size - 1);
 
-    std::cout << result.sum << std::endl;
+    std::cout << result.sum;
 
     delete[] input;
 
