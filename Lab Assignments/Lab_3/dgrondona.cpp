@@ -1,8 +1,10 @@
 #include <iostream>
 using namespace std;
 
+// the bit integer limit so any value is greater than MIN
 int MIN = -2147483648;
 
+// Struct to hold low, high, and sum
 struct SubArray {
     int low;
     int high;
@@ -90,7 +92,7 @@ int main(int argc, char **argv) {
 
     // Get the size from the first input and make an array of that size
     std::cin >> size;
-    // std::cout << "--------" << size << ", " << (size % 2) << std::endl;
+
     input = new int[size];
 
     // Fill the array with elements from the input
@@ -103,8 +105,10 @@ int main(int argc, char **argv) {
     // Find Maximum Sub-Array
     SubArray result = findMaxSubArray(input, 0, size - 1);
 
+    // Output the sum
     std::cout << result.sum;
 
+    // Free memory
     delete[] input;
 
 }
