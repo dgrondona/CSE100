@@ -9,7 +9,7 @@ using namespace std;
 
 int partition(int* A, int low, int high) {
 
-    // Choose the center as the pivot (FIX ME: Use random later)
+    // Choose random pivot that is between the lower and upper bounds
     int i = low + rand() % (high - low + 1);
     int pivot = A[i];
 
