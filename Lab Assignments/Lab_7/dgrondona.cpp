@@ -2,19 +2,25 @@
 
 using namespace std;
 
-typedef struct Node {
+struct Node {
     int key;
-    struct Node* left;
-    struct Node* right;
-} Node;
+    Node* left;
+    Node* right;
+};
+
+Node* createNode(int key) {
+
+    Node* node = new Node;
+    node->key = key;
+    node->left = node->right = nullptr;
+    return node;
+
+}
 
 Node* insert(Node* root, int key) {
 
-    if (root == NULL) {
-        Node* newNode = (Node*) malloc(sizeof(Node));
-        newNode->key = key;
-        newNode->left = newNode->right = NULL;
-        return newNode;
+    if (root == nullptr) {
+        return createNode(key);
     }
 
     if (key < root->key) {
