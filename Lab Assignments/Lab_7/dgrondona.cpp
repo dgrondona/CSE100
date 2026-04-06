@@ -104,7 +104,7 @@ Node* deleteNode(Node* root, int key) {
             Node* temp = root->left;
             delete root;
             return temp;
-            
+
         }
 
         Node* temp = findMin(root->right);
@@ -114,5 +114,44 @@ Node* deleteNode(Node* root, int key) {
     }
 
     return root;
+
+}
+
+int main(int argc, char **argv) {
+
+    Node* root = nullptr;
+    string input;
+
+    while (cin >> input) {
+
+        if (input == "e") {
+
+            break;
+
+        } else if (input[0] == 'i') {
+
+            int key = stoi(input.substr(1));
+            root = insert(root, key);
+
+        } else if (input[0] == 'd') {
+
+            int key = stoi(input.substr(1));
+            root = deleteNode(root, key);
+
+        } else if (input == "oin") {
+
+            inOrder(root);
+
+        } else if (input == "opre") {
+
+            preOrder(root);
+
+        } else if (input == "opost") {
+
+            postOrder(root);
+
+        }
+
+    }
 
 }
