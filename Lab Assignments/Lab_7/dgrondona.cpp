@@ -65,6 +65,7 @@ void postOrder(Node* root) {
 
 }
 
+// Find the min
 Node* findMin(Node* root) {
 
     while (root->left != nullptr) {
@@ -74,6 +75,7 @@ Node* findMin(Node* root) {
     return root;
 }
 
+// Delete node
 Node* deleteNode(Node* root, int key) {
 
     if (!root) return nullptr;
@@ -122,6 +124,7 @@ int main(int argc, char **argv) {
     Node* root = nullptr;
     string input;
 
+    // Handle input commands
     while (cin >> input) {
 
         if (input == "e") {
