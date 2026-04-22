@@ -3,12 +3,15 @@
 
 using namespace std;
 
+// Very large number, practically infinity
 const long long INF = 1e18;
 
+// Edge stores u, v, and w
 struct Edge {
     int u, v, w;
 };
 
+// Initialize Distances
 void init(std::vector<long long>& dist, int V, int s) {
 
     dist.assign(V, INF);
@@ -16,6 +19,7 @@ void init(std::vector<long long>& dist, int V, int s) {
 
 }
 
+// Relax an edge
 void relax(int u, int v, int w, vector<long long>& dist) {
 
     if (dist[u] != INF && dist[v] > dist[u] + w) {
